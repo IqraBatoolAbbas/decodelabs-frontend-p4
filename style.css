@@ -1,0 +1,389 @@
+:root{
+  --bg:#0a0e1a;
+  --bg2:#0f1525;
+  --surface:#131929;
+  --surface2:#1a2236;
+  --surface3:#202a40;
+  --border:#2a3550;
+  --border2:#334166;
+  --focus:#4f8ef7;
+
+  --text1:#e8edf8;
+  --text2:#8f9ec0;
+  --text3:#58688a;
+
+  --blue:#4f8ef7;
+  --blue2:#3a7cf5;
+  --purple:#8b5cf6;
+  --green:#22c55e;
+  --green-bg:rgba(34,197,94,.08);
+  --green-border:rgba(34,197,94,.3);
+  --red:#ef4444;
+  --red-bg:rgba(239,68,68,.08);
+  --red-border:rgba(239,68,68,.3);
+  --amber:#f59e0b;
+
+  --r:8px;
+  --r2:12px;
+  --r3:6px;
+  --tr:.18s ease;
+
+  --font:'Inter',system-ui,sans-serif;
+  --mono:'JetBrains Mono','Fira Code',monospace;
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+
+body{
+  font-family:var(--font);
+  background:var(--bg);
+  color:var(--text1);
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  padding:2rem 1rem;
+  line-height:1.5;
+  /* Subtle grid bg */
+  background-image:
+    linear-gradient(rgba(79,142,247,.03) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(79,142,247,.03) 1px,transparent 1px);
+  background-size:40px 40px;
+}
+
+/* ════ SCREEN MANAGER ════════════════════════════════════════════ */
+.screen{display:none;width:100%;max-width:500px;animation:fadeUp .28s ease}
+.screen.active{display:flex;flex-direction:column}
+
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(14px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+/* ════ BRAND HEADER ═══════════════════════════════════════════════ */
+.brand{text-align:center;margin-bottom:1.75rem}
+
+.logo-wrap{
+  display:inline-flex;align-items:center;gap:.55rem;
+  text-decoration:none;margin-bottom:1.1rem
+}
+.logo-mark{
+  width:42px;height:42px;border-radius:var(--r);
+  background:linear-gradient(135deg,var(--blue) 0%,var(--purple) 100%);
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--mono);font-weight:800;font-size:1rem;color:#fff;
+  letter-spacing:-0.5px;flex-shrink:0;
+  box-shadow:0 4px 16px rgba(79,142,247,.35)
+}
+.logo-text{font-family:var(--mono);font-size:1.2rem;font-weight:700;color:var(--text1);letter-spacing:-.3px}
+
+.brand h1{font-size:1.45rem;font-weight:700;color:var(--text1);letter-spacing:-.4px;margin-bottom:.3rem}
+.brand p{color:var(--text2);font-size:.875rem}
+
+/* ════ CARD ════════════════════════════════════════════════════════ */
+.card{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:var(--r2);
+  padding:2rem;
+  position:relative;overflow:hidden
+}
+.card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,var(--blue),var(--purple),var(--green))
+}
+
+/* ════ SECTION LABEL ══════════════════════════════════════════════ */
+.sec-label{
+  font-size:.68rem;font-weight:700;
+  color:var(--text3);text-transform:uppercase;letter-spacing:.1em;
+  margin-bottom:.9rem
+}
+
+/* ════ FIELD GROUP ════════════════════════════════════════════════ */
+.fg{margin-bottom:1.15rem}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+
+/* ════ LABEL ══════════════════════════════════════════════════════ */
+/* PDF p.6 — <label> is "the descriptive signage" */
+label.lbl{
+  display:block;
+  font-size:.8rem;font-weight:600;color:var(--text2);
+  margin-bottom:.38rem;letter-spacing:.01em
+}
+.req{color:var(--red);margin-left:2px}
+
+/* ════ INPUT WRAPPER ══════════════════════════════════════════════ */
+.iw{position:relative}
+
+.ico-left{
+  position:absolute;left:.72rem;top:50%;transform:translateY(-50%);
+  color:var(--text3);pointer-events:none;width:15px;height:15px;
+  transition:color var(--tr)
+}
+.ico-right{
+  position:absolute;right:.72rem;top:50%;transform:translateY(-50%);
+  width:15px;height:15px;pointer-events:none;
+  opacity:0;transition:opacity var(--tr)
+}
+.ico-right.show{opacity:1}
+.ico-right.ok{color:var(--green)}
+.ico-right.bad{color:var(--red)}
+
+/* ════ INPUTS — Phase 1: Semantic Skeleton (PDF p.6) ══════════════
+   Proper <input> tags, NOT divs or spans used for data entry       */
+input[type=text],
+input[type=email],
+input[type=password],
+input[type=tel],
+select{
+  width:100%;
+  background:var(--surface2);
+  border:1px solid var(--border);
+  border-radius:var(--r3);
+  color:var(--text1);
+  font-family:var(--font);font-size:.875rem;
+  padding:.6rem .6rem .6rem 2.15rem;
+  outline:none;
+  -webkit-appearance:none;appearance:none;
+  transition:border-color var(--tr),box-shadow var(--tr),background var(--tr)
+}
+input[type=text]:focus,
+input[type=email]:focus,
+input[type=password]:focus,
+input[type=tel]:focus,
+select:focus{
+  border-color:var(--focus);
+  box-shadow:0 0 0 3px rgba(79,142,247,.15);
+  background:var(--surface3)
+}
+input[type=text]:focus~.ico-left,
+input[type=email]:focus~.ico-left,
+input[type=password]:focus~.ico-left,
+input[type=tel]:focus~.ico-left{color:var(--blue)}
+
+/* ════ VALIDATION STATES (PDF p.13 — Rejected / Approved) ═════════ */
+input.invalid,select.invalid{
+  border-color:var(--red-border);
+  box-shadow:0 0 0 3px var(--red-bg);
+  background:rgba(239,68,68,.04)
+}
+input.valid,select.valid{
+  border-color:var(--green-border);
+  box-shadow:0 0 0 3px var(--green-bg)
+}
+
+/* toggle password button */
+.pw-toggle{
+  position:absolute;right:.72rem;top:50%;transform:translateY(-50%);
+  background:none;border:none;cursor:pointer;
+  color:var(--text3);display:flex;align-items:center;
+  padding:2px;transition:color var(--tr);z-index:1
+}
+.pw-toggle:hover{color:var(--text2)}
+
+/* select arrow */
+select{
+  padding-left:.72rem;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%2358688a' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right .72rem center
+}
+select option{background:var(--surface2);color:var(--text1)}
+
+/* ════ ERROR MESSAGE — Phase 3/4 Output (PDF p.13-14) ══════════════
+   "Precisely placed dynamic UI feedback"
+   NOT color alone — precise textual feedback is required (PDF p.13) */
+.err-msg{
+  display:flex;align-items:flex-start;gap:.3rem;
+  margin-top:.35rem;font-size:.75rem;color:var(--red);
+  min-height:1em;
+  opacity:0;transform:translateY(-3px);
+  transition:opacity var(--tr),transform var(--tr)
+}
+.err-msg.show{opacity:1;transform:translateY(0)}
+.err-msg svg{flex-shrink:0;margin-top:1px}
+
+.ok-msg{
+  display:flex;align-items:center;gap:.3rem;
+  margin-top:.35rem;font-size:.75rem;color:var(--green);
+  min-height:1em;
+  opacity:0;transform:translateY(-3px);
+  transition:opacity var(--tr),transform var(--tr)
+}
+.ok-msg.show{opacity:1;transform:translateY(0)}
+
+/* ════ PASSWORD STRENGTH (PDF p.11 diagram) ════════════════════════ */
+.pw-bar{display:flex;gap:4px;margin-top:.45rem}
+.pw-bar span{flex:1;height:3px;background:var(--border);border-radius:99px;transition:background var(--tr)}
+
+.pw-bar.s1 span:nth-child(1){background:var(--red)}
+.pw-bar.s2 span:nth-child(1),.pw-bar.s2 span:nth-child(2){background:var(--amber)}
+.pw-bar.s3 span:nth-child(1),.pw-bar.s3 span:nth-child(2),.pw-bar.s3 span:nth-child(3){background:var(--amber)}
+.pw-bar.s4 span{background:var(--green)}
+
+.pw-slabel{font-size:.7rem;color:var(--text3);margin-top:.25rem;transition:color var(--tr)}
+.pw-slabel.s1{color:var(--red)}
+.pw-slabel.s2,.pw-slabel.s3{color:var(--amber)}
+.pw-slabel.s4{color:var(--green)}
+
+/* ════ PASSWORD RULES (PDF p.11 — Anatomy of a Strict Password Policy)
+   Each lookahead in /^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[#?!@$%^&*-]).{8,}/
+   is visualised as a live rule row                                   */
+.pw-rules{display:grid;grid-template-columns:1fr 1fr;gap:.28rem .7rem;margin-top:.45rem}
+.pw-rule{display:flex;align-items:center;gap:.28rem;font-size:.7rem;color:var(--text3);transition:color var(--tr)}
+.pw-rule svg{flex-shrink:0;transition:stroke var(--tr)}
+.pw-rule.met{color:var(--green)}
+.pw-rule.fail{color:var(--red)}
+
+/* ════ PHONE ROW ══════════════════════════════════════════════════ */
+.phone-row{display:flex;gap:.5rem}
+.phone-row select{width:96px;flex-shrink:0;font-size:.8rem}
+.phone-row .iw{flex:1}
+
+/* ════ CHECKBOX (PDF p.3 — "etc." covers checkbox) ═══════════════ */
+.cb-group{display:flex;align-items:flex-start;gap:.55rem;margin:1.1rem 0}
+.cb-group input[type=checkbox]{
+  width:15px;height:15px;min-width:15px;
+  accent-color:var(--blue);margin-top:2px;cursor:pointer;padding:0
+}
+.cb-group label.lbl{font-size:.8rem;font-weight:400;color:var(--text2);margin:0;cursor:pointer}
+.cb-group label.lbl a{color:var(--blue);text-decoration:none}
+.cb-group label.lbl a:hover{text-decoration:underline}
+.cb-err{font-size:.75rem;color:var(--red);margin-top:.2rem;display:none}
+.cb-err.show{display:block}
+
+/* ════ DIVIDER ════════════════════════════════════════════════════ */
+hr.div{border:none;border-top:1px solid var(--border);margin:1.4rem 0}
+
+/* ════ SUBMIT BUTTON (PDF p.6 — <button type="submit"> is "the execution trigger") */
+.btn-submit{
+  width:100%;padding:.72rem 1.25rem;
+  background:var(--blue);border:none;border-radius:var(--r3);
+  color:#fff;font-family:var(--font);font-size:.9rem;font-weight:600;
+  cursor:pointer;letter-spacing:.01em;
+  display:flex;align-items:center;justify-content:center;gap:.45rem;
+  transition:background var(--tr),transform var(--tr),box-shadow var(--tr)
+}
+.btn-submit:hover:not(:disabled){
+  background:var(--blue2);
+  box-shadow:0 4px 18px rgba(79,142,247,.38);
+  transform:translateY(-1px)
+}
+.btn-submit:active:not(:disabled){transform:translateY(0)}
+.btn-submit:disabled{opacity:.5;cursor:not-allowed}
+.btn-submit:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+
+/* ════ SIGN-IN BUTTON ═════════════════════════════════════════════ */
+.btn-signin{
+  width:100%;padding:.72rem 1.25rem;
+  background:transparent;border:1px solid var(--border2);
+  border-radius:var(--r3);
+  color:var(--text1);font-family:var(--font);font-size:.9rem;font-weight:600;
+  cursor:pointer;letter-spacing:.01em;
+  display:flex;align-items:center;justify-content:center;gap:.45rem;
+  transition:border-color var(--tr),background var(--tr),color var(--tr)
+}
+.btn-signin:hover{border-color:var(--blue);background:rgba(79,142,247,.07);color:var(--blue)}
+.btn-signin:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+
+/* ════ SCREEN-READER ONLY (ARIA live region) ══════════════════════ */
+.sr-only{
+  position:absolute;width:1px;height:1px;padding:0;margin:-1px;
+  overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0
+}
+
+/* ════ SUCCESS PANEL (PDF p.13 — Approved Payload → JSON) ═════════ */
+.success-panel{display:none;text-align:center;padding:.5rem 0}
+.success-panel.show{display:block;animation:fadeUp .3s ease}
+
+.tick-circle{
+  width:62px;height:62px;margin:0 auto 1.1rem;
+  background:var(--green-bg);border:2px solid var(--green-border);
+  border-radius:50%;display:flex;align-items:center;justify-content:center;
+  animation:pop .35s cubic-bezier(.34,1.56,.64,1)
+}
+@keyframes pop{from{transform:scale(.5);opacity:0}to{transform:scale(1);opacity:1}}
+
+.success-panel h2{font-size:1.2rem;font-weight:700;margin-bottom:.3rem}
+.success-panel>p{color:var(--text2);font-size:.85rem;margin-bottom:1.25rem}
+
+/* ════ JSON PAYLOAD (PDF p.13 — "packaged as JSON and transmitted") */
+.json-box{
+  background:var(--bg2);border:1px solid var(--border);
+  border-radius:var(--r);padding:1.1rem;text-align:left;
+  overflow:auto;max-height:260px
+}
+.json-header{
+  display:flex;align-items:center;justify-content:space-between;
+  margin-bottom:.65rem
+}
+.json-title{font-family:var(--mono);font-size:.65rem;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.1em}
+.json-badge{
+  font-family:var(--mono);font-size:.6rem;
+  background:var(--green-bg);color:var(--green);
+  border:1px solid var(--green-border);border-radius:99px;padding:1px 8px
+}
+pre#json-out{
+  font-family:var(--mono);font-size:.78rem;color:var(--text2);
+  white-space:pre-wrap;word-break:break-word;line-height:1.65
+}
+.jk{color:#79c0ff}.js{color:#a5d6ff}.jb{color:#ff7b72}.jn{color:var(--text3)}
+
+/* ════ SIGN-IN SUCCESS ════════════════════════════════════════════ */
+.signin-success{display:none;text-align:center;padding:.5rem 0}
+.signin-success.show{display:block;animation:fadeUp .3s ease}
+
+/* ════ RESET BTN ══════════════════════════════════════════════════ */
+.btn-reset{
+  margin-top:1rem;display:inline-flex;align-items:center;gap:.38rem;
+  padding:.5rem 1.1rem;background:var(--surface2);
+  border:1px solid var(--border);border-radius:var(--r3);
+  color:var(--text2);font-family:var(--font);font-size:.82rem;font-weight:500;
+  cursor:pointer;transition:border-color var(--tr),color var(--tr)
+}
+.btn-reset:hover{border-color:var(--blue);color:var(--blue)}
+
+/* ════ PAGE FOOTER ════════════════════════════════════════════════ */
+.pg-foot{text-align:center;margin-top:1.1rem;font-size:.8rem;color:var(--text3)}
+.pg-foot a,.pg-foot button.link-btn{
+  color:var(--blue);text-decoration:none;
+  background:none;border:none;cursor:pointer;font-size:.8rem;font-family:var(--font)
+}
+.pg-foot a:hover,.pg-foot button.link-btn:hover{text-decoration:underline}
+
+/* ════ DIVIDER TEXT ═══════════════════════════════════════════════ */
+.or-div{
+  display:flex;align-items:center;gap:.75rem;
+  margin:1.25rem 0;color:var(--text3);font-size:.78rem
+}
+.or-div::before,.or-div::after{content:'';flex:1;height:1px;background:var(--border)}
+
+/* ════ FORGOT PW LINK ═════════════════════════════════════════════ */
+.forgot-row{text-align:right;margin-top:-.5rem;margin-bottom:.8rem}
+.forgot-row button{
+  background:none;border:none;color:var(--blue);
+  font-size:.78rem;font-family:var(--font);cursor:pointer
+}
+.forgot-row button:hover{text-decoration:underline}
+
+/* ════ ALERT BOX ══════════════════════════════════════════════════ */
+.alert{
+  display:none;align-items:flex-start;gap:.6rem;
+  padding:.75rem 1rem;border-radius:var(--r3);
+  font-size:.82rem;margin-bottom:1rem
+}
+.alert.show{display:flex;animation:fadeUp .2s ease}
+.alert-error{background:var(--red-bg);border:1px solid var(--red-border);color:var(--red)}
+.alert-success{background:var(--green-bg);border:1px solid var(--green-border);color:var(--green)}
+
+/* ════ RESPONSIVE ═════════════════════════════════════════════════ */
+@media(max-width:480px){
+  .row2{grid-template-columns:1fr}
+  .card{padding:1.5rem}
+  .pw-rules{grid-template-columns:1fr}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{transition-duration:.01ms!important;animation-duration:.01ms!important}
+}

@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>DecodeLabs — Form Design &amp; Validation | Project 4</title>
+<link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+<div id="announcer" aria-live="polite" aria-atomic="true" class="sr-only" role="status"></div>
+
+<main role="main" style="width:100%;max-width:500px">
+
+<section class="screen active" id="screen-register" aria-label="Create account">
+
+  <header class="brand">
+    <a href="#" class="logo-wrap" aria-label="DecodeLabs home">
+      <span class="logo-mark" aria-hidden="true">DL</span>
+      <span class="logo-text">DecodeLabs</span>
+    </a>
+    <h1>Create your account</h1>
+    <p>DecodeLabs Industrial Training — Batch 2026</p>
+  </header>
+
+  <div class="card">
+
+    <!-- SUCCESS PANEL — shown after valid registration -->
+    <section class="success-panel" id="reg-success" role="region"
+             aria-label="Registration successful" aria-hidden="true" tabindex="-1">
+      <div class="tick-circle" aria-hidden="true">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none"
+             stroke="#22c55e" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="20 6 9 17 4 12"/>
+        </svg>
+      </div>
+      <h2>Account created!</h2>
+      <p>Your registration payload has been packaged and dispatched.</p>
+
+      
+      <div class="json-box" role="region" aria-label="Transmitted JSON payload">
+        <div class="json-header">
+          <span class="json-title">Transmitted Payload</span>
+          <span class="json-badge">200 OK</span>
+        </div>
+        <pre id="json-out" aria-label="JSON registration data"></pre>
+      </div>
+
+      <button type="button" class="btn-reset" id="btn-reg-reset">
+        <svg aria-hidden="true" width="13" height="13" viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/>
+          <path d="M3 3v5h5"/>
+        </svg>
+        Register another
+      </button>
+    </section>
+
+    <form id="reg-form" novalidate autocomplete="off" aria-label="Account registration form">
+
+      <p class="sec-label">Personal information</p>
+
+      <!-- Row: First + Last Name -->
+      <div class="row2">
+
+        <!-- First Name -->
+        <div class="fg">
+          <label class="lbl" for="r-fname">
+            First name<span class="req" aria-hidden="true">*</span>
+          </label>
+          <div class="iw">
+            <input type="text" id="r-fname" name="firstName"
+              placeholder="Ayesha"
+              autocomplete="given-name"
+              aria-required="true"
+              aria-describedby="r-fname-err"
+              aria-invalid="false"
+              maxlength="50"/>
+            
+            <svg class="ico-left" aria-hidden="true" viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
+            </svg>
+            <svg class="ico-right" id="r-fname-ico" aria-hidden="true" viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"/>
+            </svg>
+          </div>
+
+          <span id="r-fname-err" class="err-msg" role="alert" aria-live="polite">
+            <svg aria-hidden="true" width="11" height="11" viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/>
+              <line x1="12" y1="16" x2="12.01" y2="16"/>
+            </svg>
+            <span class="msg-text"></span>
+          </span>
+        </div>
+
+        <!-- Last Name -->
+        <div class="fg">
+          <label class="lbl" for="r-lname">
+            Last name<span class="req" aria-hidden="true">*</span>
+          </label>
+          <div class="iw">
+            <input type="text" id="r-lname" name="lastName"
+              placeholder="Khan"
+              autocomplete="family-name"
+              aria-required="true"
+              aria-describedby="r-lname-err"
+              aria-invalid="false"
+              maxlength="50"/>
+            <svg class="ico-left" aria-hidden="true" viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
+            </svg>
+            <svg class="ico-right" id="r-lname-ico" aria-hidden="true" viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"/>
+            </svg>
+          </div>
+          <span id="r-lname-err" class="err-msg" role="alert" aria-live="polite">
+            <svg aria-hidden="true" width="11" height="11" viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/>
+              <line x1="12" y1="16" x2="12.01" y2="16"/>
+            </svg>
+            <span class="msg-text"></span>
+          </span>
+        </div>
+
+      </div><!-- /.row2 -->
+
+      <!-- Email -->
+      <div class="fg">
+        <label class="lbl" for="r-email">
+          Email address<span class="req" aria-hidden="true">*</span>
+        </label>
+        <div class="iw">
+          <input type="email" id="r-email" name="email"
+            placeholder="ayesha@decodelabs.io"
+            autocomplete="email"
+            aria-required="true"
+            aria-describedby="r-email-err"
+            aria-invalid="false"/>
+          <svg class="ico-left" aria-hidden="true" viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="4" width="20" height="16" rx="2"/>
+            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+          </svg>
+          <svg class="ico-right" id="r-email-ico" aria-hidden="true" viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12"/>
+          </svg>
+        </div>
+        <span id="r-email-err" class="err-msg" role="alert" aria-live="polite">
+          <svg aria-hidden="true" width="11" height="11" viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/>
+            <line x1="12" y1="16" x2="12.01" y2="16"/>
+          </svg>
+          <span class="msg-text"></span>
+        </span>
+      </div>
+
+      <!-- Phone -->
+      <div class="fg">
+        <label class="lbl" for="r-phone">
+          Phone number<span class="req" aria-hidden="true">*</span>
+        </label>
+        <div class="phone-row">
+          <select id="r-pcode" name="phoneCode" aria-label="Country dialing code"
+                  aria-required="true" aria-describedby="r-phone-err" aria-invalid="false">
+            <option value="+92">🇵🇰 +92</option>
+            <option value="+1">🇺🇸 +1</option>
+            <option value="+44">🇬🇧 +44</option>
+            <option value="+91">🇮🇳 +91</option>
+            <option value="+971">🇦🇪 +971</option>
+            <option value="+966">🇸🇦 +966</option>
+            <option value="+61">🇦🇺 +61</option>
+            <option value="+49">🇩🇪 +49</option>
+          </select>
+          <div class="iw">
+            <input type="tel" id="r-phone" name="phone"
+              placeholder="3001234567"
+              autocomplete="tel"
+              aria-required="true"
+              aria-describedby="r-phone-err"
+              aria-invalid="false"
+              maxlength="15"/>
+            <svg class="ico-left" aria-hidden="true" viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.62 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+            </svg>
+            <svg class="ico-right" id="r-phone-ico" aria-hidden="true" viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"/>
+            </svg>
+          </div>
+        </div>
+        <span id="r-phone-err" class="err-msg" role="alert" aria-live="polite">
+          <svg aria-hidden="true" width="11" height="11" viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/>
+            <line x1="12" y1="16" x2="12.01" y2="16"/>
+          </svg>
+          <span class="msg-text"></span>
+        </span>
+      </div>
+
+    
+      <div class="fg">
+        <label class="lbl" for="r-track">
+          Training track<span class="req" aria-hidden="true">*</span>
+        </label>
+        <div class="iw">
+          <select id="r-track" name="track" style="padding-left:.75rem"
+                  aria-required="true" aria-describedby="r-track-err" aria-invalid="false">
+            <option value="">— Select a track —</option>
+            <option value="frontend">Frontend Development</option>
+            <option value="backend">Backend Development</option>
+            <option value="fullstack">Full-Stack Engineering</option>
+            <option value="devops">DevOps &amp; Cloud</option>
+            <option value="mobile">Mobile Development</option>
+            <option value="ai-ml">AI / Machine Learning</option>
+            <option value="cybersecurity">Cybersecurity</option>
+          </select>
+        </div>
+        <span id="r-track-err" class="err-msg" role="alert" aria-live="polite">
+          <svg aria-hidden="true" width="11" height="11" viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/>
+            <line x1="12" y1="16" x2="12.01" y2="16"/>
+          </svg>
+          <span class="msg-text"></span>
+        </span>
+      </div>
+
+      <hr class="div"/>
+      <p class="sec-label">Security</p>
+
+      <!-- Password -->
+      <div class="fg">
+        <label class="lbl" for="r-pw">
+          Password<span class="req" aria-hidden="true">*</span>
+        </label>
+        <div class="iw">
+          <input type="password" id="r-pw" name="password"
+            placeholder="Min 8 chars · upper · lower · digit · symbol"
+            autocomplete="new-password"
+            aria-required="true"
+            aria-describedby="r-pw-err r-pw-rules-desc"
+            aria-invalid="false"/>
+          <svg class="ico-left" aria-hidden="true" viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="11" width="18" height="11" rx="2"/>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+          </svg>
+          <!-- toggle password show/hide -->
+          <button type="button" class="pw-toggle" id="tgl-pw"
+                  aria-label="Show password" aria-pressed="false">
+            <svg id="eye1" aria-hidden="true" width="15" height="15" viewBox="0 0 24 24"
+                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>
+            </svg>
+            <svg id="eye1off" aria-hidden="true" width="15" height="15" viewBox="0 0 24 24"
+                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                 stroke-linejoin="round" style="display:none">
+              <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/>
+              <line x1="1" y1="1" x2="23" y2="23"/>
+            </svg>
+          </button>
+        </div>
+
+       
+        <div class="pw-bar" id="pw-bar" aria-hidden="true">
+          <span></span><span></span><span></span><span></span>
+        </div>
+        <div class="pw-slabel" id="pw-slabel" aria-live="polite" aria-atomic="true"></div>
+
+        <div class="pw-rules" id="pw-rules" role="list" aria-label="Password requirements">
+          <div class="pw-rule" id="rl-len" role="listitem"><svg aria-hidden="true" id="rl-len-i" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg><span>8+ characters</span></div>
+          <div class="pw-rule" id="rl-up" role="listitem"><svg aria-hidden="true" id="rl-up-i" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg><span>Uppercase (A–Z)</span></div>
+          <div class="pw-rule" id="rl-lo" role="listitem"><svg aria-hidden="true" id="rl-lo-i" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg><span>Lowercase (a–z)</span></div>
+          <div class="pw-rule" id="rl-di" role="listitem"><svg aria-hidden="true" id="rl-di-i" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg><span>Number (0–9)</span></div>
+          <div class="pw-rule" id="rl-sp" role="listitem"><svg aria-hidden="true" id="rl-sp-i" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg><span>Symbol (#?!@$%^&amp;*-)</span></div>
+        </div>
+
+        <p id="r-pw-rules-desc" class="sr-only">
+          Password must be at least 8 characters and include an uppercase letter,
+          a lowercase letter, a number, and one symbol from: # ? ! @ $ % ^ &amp; * -
+        </p>
+
+        <span id="r-pw-err" class="err-msg" role="alert" aria-live="polite">
+          <svg aria-hidden="true" width="11" height="11" viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/>
+            <line x1="12" y1="16" x2="12.01" y2="16"/>
+          </svg>
+          <span class="msg-text"></span>
+        </span>
+      </div>
+
+      <!-- Confirm Password -->
+      <div class="fg">
+        <label class="lbl" for="r-cpw">
+          Confirm password<span class="req" aria-hidden="true">*</span>
+        </label>
+        <div class="iw">
+          <input type="password" id="r-cpw" name="confirmPassword"
+            placeholder="Re-enter your password"
+            autocomplete="new-password"
+            aria-required="true"
+            aria-describedby="r-cpw-err"
+            aria-invalid="false"/>
+          <svg class="ico-left" aria-hidden="true" viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+          <button type="button" class="pw-toggle" id="tgl-cpw"
+                  aria-label="Show confirm password" aria-pressed="false">
+            <svg id="eye2" aria-hidden="true" width="15" height="15" viewBox="0 0 24 24"
+                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>
+            </svg>
+            <svg id="eye2off" aria-hidden="true" width="15" height="15" viewBox="0 0 24 24"
+                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                 stroke-linejoin="round" style="display:none">
+              <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/>
+              <line x1="1" y1="1" x2="23" y2="23"/>
+            </svg>
+          </button>
+        </div>
+        <span id="r-cpw-err" class="err-msg" role="alert" aria-live="polite">
+          <svg aria-hidden="true" width="11" height="11" viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/>
+            <line x1="12" y1="16" x2="12.01" y2="16"/>
+          </svg>
+          <span class="msg-text"></span>
+        </span>
+      </div>
+
+      <hr class="div"/>
+
+      <!-- Terms checkbox (PDF p.3 — checkbox in the form illustration) -->
+      <div>
+        <div class="cb-group">
+          <input type="checkbox" id="r-terms" name="terms"
+                 aria-required="true"
+                 aria-describedby="r-terms-err"
+                 aria-invalid="false"/>
+          <label class="lbl" for="r-terms">
+            I agree to the <a href="#" tabindex="0">Terms of Service</a>
+            and <a href="#" tabindex="0">Privacy Policy</a>
+          </label>
+        </div>
+        <p id="r-terms-err" class="cb-err" role="alert" aria-live="polite"></p>
+      </div>
+
+      <button type="submit" class="btn-submit" id="reg-submit-btn">
+        <svg aria-hidden="true" width="15" height="15" viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+        </svg>
+        Create account
+      </button>
+
+    </form>
+  </div><!-- /.card -->
+
+  <p class="pg-foot">
+    Already have an account?
+    <button type="button" class="link-btn" id="goto-signin">Sign in</button>
+  </p>
+
+</section><!-- /#screen-register -->
+
+<section class="screen" id="screen-signin" aria-label="Sign in to your account">
+
+  <header class="brand">
+    <a href="#" class="logo-wrap" aria-label="DecodeLabs home">
+      <span class="logo-mark" aria-hidden="true">DL</span>
+      <span class="logo-text">DecodeLabs</span>
+    </a>
+    <h1>Welcome back</h1>
+    <p>Sign in to your DecodeLabs account</p>
+  </header>
+
+  <div class="card">
+
+    <!-- Sign-in success panel -->
+    <section class="signin-success" id="signin-success" role="region"
+             aria-label="Sign in successful" aria-hidden="true" tabindex="-1">
+      <div class="tick-circle" aria-hidden="true">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none"
+             stroke="#22c55e" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="20 6 9 17 4 12"/>
+        </svg>
+      </div>
+      <h2>Signed in!</h2>
+      <p style="color:var(--text2);font-size:.85rem;margin-bottom:1.25rem">
+        Access granted. Redirecting to your dashboard…
+      </p>
+      
+      <div class="json-box" role="region" aria-label="Session payload">
+        <div class="json-header">
+          <span class="json-title">Session Payload</span>
+          <span class="json-badge">200 OK</span>
+        </div>
+        <pre id="signin-json-out" aria-label="JSON session data"></pre>
+      </div>
+      <button type="button" class="btn-reset" id="btn-signin-reset">
+        <svg aria-hidden="true" width="13" height="13" viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/>
+        </svg>
+        Sign out
+      </button>
+    </section>
+
+    <!-- Global alert (error banner shown on repeated bad attempts) -->
+    <div id="signin-alert" class="alert alert-error" role="alert" aria-live="assertive">
+      <svg aria-hidden="true" width="15" height="15" viewBox="0 0 24 24" fill="none"
+           stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:1px">
+        <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/>
+        <line x1="12" y1="16" x2="12.01" y2="16"/>
+      </svg>
+      <span id="signin-alert-text"></span>
+    </div>
+
+    <form id="signin-form" novalidate autocomplete="off" aria-label="Sign in form">
+
+      <!-- Email -->
+      <div class="fg">
+        <label class="lbl" for="si-email">
+          Email address<span class="req" aria-hidden="true">*</span>
+        </label>
+        <div class="iw">
+          <input type="email" id="si-email" name="email"
+            placeholder="ayesha@decodelabs.io"
+            autocomplete="email"
+            aria-required="true"
+            aria-describedby="si-email-err"
+            aria-invalid="false"/>
+          <svg class="ico-left" aria-hidden="true" viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="4" width="20" height="16" rx="2"/>
+            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+          </svg>
+          <svg class="ico-right" id="si-email-ico" aria-hidden="true" viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12"/>
+          </svg>
+        </div>
+        <span id="si-email-err" class="err-msg" role="alert" aria-live="polite">
+          <svg aria-hidden="true" width="11" height="11" viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/>
+            <line x1="12" y1="16" x2="12.01" y2="16"/>
+          </svg>
+          <span class="msg-text"></span>
+        </span>
+      </div>
+
+      <!-- Password + forgot link -->
+      <div class="fg">
+        <label class="lbl" for="si-pw">
+          Password<span class="req" aria-hidden="true">*</span>
+        </label>
+        <div class="iw">
+          <input type="password" id="si-pw" name="password"
+            placeholder="Your password"
+            autocomplete="current-password"
+            aria-required="true"
+            aria-describedby="si-pw-err"
+            aria-invalid="false"/>
+          <svg class="ico-left" aria-hidden="true" viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="11" width="18" height="11" rx="2"/>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+          </svg>
+          <button type="button" class="pw-toggle" id="tgl-si-pw"
+                  aria-label="Show password" aria-pressed="false">
+            <svg id="eye3" aria-hidden="true" width="15" height="15" viewBox="0 0 24 24"
+                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>
+            </svg>
+            <svg id="eye3off" aria-hidden="true" width="15" height="15" viewBox="0 0 24 24"
+                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                 stroke-linejoin="round" style="display:none">
+              <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/>
+              <line x1="1" y1="1" x2="23" y2="23"/>
+            </svg>
+          </button>
+        </div>
+        <span id="si-pw-err" class="err-msg" role="alert" aria-live="polite">
+          <svg aria-hidden="true" width="11" height="11" viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/>
+            <line x1="12" y1="16" x2="12.01" y2="16"/>
+          </svg>
+          <span class="msg-text"></span>
+        </span>
+      </div>
+
+      <!-- Forgot password -->
+      <div class="forgot-row">
+        <button type="button" id="btn-forgot" aria-label="Forgot password help">Forgot password?</button>
+      </div>
+
+      <!-- Remember me checkbox -->
+      <div class="cb-group" style="margin-top:0;margin-bottom:1.1rem">
+        <input type="checkbox" id="si-remember" name="remember"/>
+        <label class="lbl" for="si-remember">Keep me signed in</label>
+      </div>
+
+      <button type="submit" class="btn-submit" id="signin-submit-btn">
+        <svg aria-hidden="true" width="15" height="15" viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/>
+          <polyline points="10 17 15 12 10 7"/>
+          <line x1="15" y1="12" x2="3" y2="12"/>
+        </svg>
+        Sign in
+      </button>
+
+      <div class="or-div">or</div>
+
+      <button type="button" class="btn-signin" id="goto-register-from-signin">
+        <svg aria-hidden="true" width="15" height="15" viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+          <circle cx="9" cy="7" r="4"/>
+          <line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/>
+        </svg>
+        Create a new account
+      </button>
+
+    </form>
+  </div><!-- /.card -->
+
+  <p class="pg-foot">
+    Don't have an account?
+    <button type="button" class="link-btn" id="goto-register-foot">Register here</button>
+  </p>
+
+</section>
+
+</main>
+<script src="script.js"></script>
+</body>
+</html>
